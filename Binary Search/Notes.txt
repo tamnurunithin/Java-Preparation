@@ -1,0 +1,63 @@
+✅Binary Search in Java
+Binary Search is a searching algorithm that works on sorted arrays/lists by repeatedly dividing the search interval in half.
+
+Start with the middle element.
+If the target equals the middle → found.
+If the target is smaller → search the left half.
+If the target is larger → search the right half.
+
+This process continues until the element is found or the search space is empty.
+
+⚡When to Use
+Data must be sorted (ascending or descending).
+When you want faster searches on large datasets.
+Not suitable for unsorted data (unless sorted first).
+
+⬇️Step-by-Step Example:
+Array: {10, 20, 30, 40, 50, 60, 70}
+Search for: 50
+Low = 0, High = 6, Mid = (0+6)/2 = 3 → arr[3] = 40 → target > 40 → search right half.
+Low = 4, High = 6, Mid = (4+6)/2 = 5 → arr[5] = 60 → target < 60 → search left half
+Low = 4, High = 4, Mid = 4 → arr[4] = 50 → Found at index 4.
+
+🧠Java Example
+public class BinarySearchExample {
+    public static int binarySearch(int[] arr, int target) {
+        int low = 0, high = arr.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (arr[mid] == target) {
+                return mid; // Found
+            }
+            if (arr[mid] < target) {
+                low = mid + 1; // Search right
+            } else {
+                high = mid - 1; // Search left
+            }
+        }
+        return -1; // Not found
+    }
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40, 50, 60, 70};
+        int target = 50;
+        int result = binarySearch(numbers, target);
+        if (result == -1) {
+            System.out.println("Element not found");
+        } else {
+            System.out.println("Element found at index: " + result);
+        }
+    }
+}
+
+⚡Complexity Analysis
+Case	      Time Complexity	     Reason
+Best Case	O(1)	             Target is the middle element
+Worst Case	O(log n)      	     Repeatedly halves the search space
+Average Case	O(log n)      	     On average, halves the array each time
+Space	        O(1)	     	     Iterative version uses no extra space
+
+
+⚡Which is Best?
+For small arrays or unsorted data: Linear Search (no sorting needed).
+For large sorted data: Binary Search (much faster).
+If data changes frequently: Linear may be better (no need to sort every time).
