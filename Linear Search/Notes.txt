@@ -1,0 +1,59 @@
+Linear Search (Sequential Search)
+Linear Search is the simplest searching algorithm where we check each element of the array one by one until we find the target element or reach the end of the array.
+
+1️⃣ Definition
+Linear search scans each element in the list sequentially until the desired element is found or the list ends.
+
+2️⃣ How It Works
+Start from the first element of the array.
+Compare the current element with the target element.
+If they match → return the index.
+If not → move to the next element.
+If the end is reached without finding it → element not found.
+
+3️⃣ Example Flow
+Array: {10, 20, 30, 40, 50}
+Search for: 30
+Compare index 0 → 10 != 30 → move ahead
+Compare index 1 → 20 != 30 → move ahead
+Compare index 2 → 30 == 30 → found at index 2
+
+4️⃣ Java Example
+
+public class LinearSearchExample {
+    public static int linearSearch(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                return i; // Return index if found
+            }
+        }
+        return -1; // Not found
+    }
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40, 50};
+        int target = 30;
+        int result = linearSearch(numbers, target);
+        if (result == -1) {
+            System.out.println("Element not found");
+        } else {
+            System.out.println("Element found at index: " + result);
+        }
+    }
+}
+
+
+5️⃣ Time & Space Complexity
+Best Case: O(1) → Element found at first position.
+Worst Case: O(n) → Element at last position or not present.
+Average Case: O(n)
+Space Complexity: O(1) → No extra space used.
+
+6️⃣ Advantages
+✅ Simple to implement.
+✅ Works on unsorted data.
+✅ Works on arrays, lists, linked lists, etc.
+
+7️⃣ Disadvantages
+❌ Very slow for large datasets.
+❌ Inefficient compared to binary search for sorted data.
+
