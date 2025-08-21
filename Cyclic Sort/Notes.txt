@@ -1,0 +1,50 @@
+✅Cyclic Sort:
+📌What is Cyclic Sort?
+Cyclic Sort is an in-place, comparison-based sorting algorithm.
+Works best when the array contains numbers in the range 1 to N (without duplicates).
+Each number should be at index number - 1. If not, swap it with the element at its correct index.
+
+⌛Time & Space Complexity:
+Time: O(n) → because each element is swapped at most once.
+Space: O(1) → in-place (no extra array needed).
+
+⚡Algorithm Steps:
+Start from index i = 0.
+If arr[i] != arr[arr[i] - 1], swap the elements.
+Else, move to next index i++.
+Continue until i < arr.length.
+
+🧠Example:
+public class CyclicSort {
+    public static void cyclicSort(int[] arr) {
+        int i = 0;
+        while (i < arr.length) {
+            int correctIndex = arr[i] - 1;  
+            if (arr[i] != arr[correctIndex]) {
+                int temp = arr[i];
+                arr[i] = arr[correctIndex];
+                arr[correctIndex] = temp;
+            } else {
+                i++;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        int[] arr = {3, 5, 2, 1, 4};
+        cyclicSort(arr);
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+//Output
+1 2 3 4 5
+
+
+✅ When to use Cyclic Sort?
+Useful when numbers are from 1 to N.
+Common in problems like:
+Finding missing number
+Finding duplicate numbers
+Placing elements at correct positions
