@@ -37,5 +37,3 @@ class MergeSort {
         for (int num : arr) System.out.print(num + " ");
     }
 }
-//Output:
-//[2, 4, 7, 9, 12, 15]
