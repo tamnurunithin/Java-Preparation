@@ -1,0 +1,118 @@
+Linked List
+1. What is a Linked List?
+A Linked List is a linear data structure where elements are stored in nodes, and each node points to the next node in the sequence.
+Unlike arrays, Linked Lists do not store elements in contiguous memory, so insertion and deletion are faster.
+Node Structure: Each node contains:
+data (value)
+next (reference to the next node)
+
+📘 Singly Linked List in Java – Interview Notes
+1. What is a Singly Linked List?
+A linear data structure where each element is a node.
+Each node has:
+data → stores the value
+next → reference (link) to the next node
+The last node points to null.
+
+🧠Example:
+class Node {
+    int data;       // value of node
+    Node next;      // reference to next node
+
+    // Constructor
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class SinglyLinkedList {
+    Node head;   // first node of the list
+
+    // Insert at the end
+    public void insert(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {    // if list is empty
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {  // traverse to last node
+                temp = temp.next;
+            }
+            temp.next = newNode;   // link new node at end
+        }
+    }
+
+    // Insert at the beginning
+    public void insertAtBeginning(int data) {
+        Node newNode = new Node(data);
+        newNode.next = head;   // new node points to old head
+        head = newNode;        // new node becomes head
+    }
+
+    // Delete first node
+    public void deleteFirst() {
+        if (head != null) {
+            head = head.next;   // move head to next node
+        } else {
+            System.out.println("List is empty, nothing to delete!");
+        }
+    }
+
+    // Delete last node
+    public void deleteLast() {
+        if (head == null) {
+            System.out.println("List is empty, nothing to delete!");
+        } else if (head.next == null) {
+            head = null;   // only one element
+        } else {
+            Node temp = head;
+            while (temp.next.next != null) {  // second last node
+                temp = temp.next;
+            }
+            temp.next = null;  // remove last node
+        }
+    }
+
+    // Display the linked list
+    public void display() {
+        if (head == null) {
+            System.out.println("List is empty!");
+            return;
+        }
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        // Insert elements
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        System.out.print("After inserting 10, 20, 30: ");
+        list.display();   // 10 -> 20 -> 30 -> null
+
+        // Insert at beginning
+        list.insertAtBeginning(5);
+        System.out.print("After inserting 5 at beginning: ");
+        list.display();   // 5 -> 10 -> 20 -> 30 -> null
+
+        // Delete first element
+        list.deleteFirst();
+        System.out.print("After deleting first element: ");
+        list.display();   // 10 -> 20 -> 30 -> null
+
+        // Delete last element
+        list.deleteLast();
+        System.out.print("After deleting last element: ");
+        list.display();   // 10 -> 20 -> null
+    }
+}
