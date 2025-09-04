@@ -1,0 +1,133 @@
+✅Doubly Linked List?
+We already know Singly Linked List (SLL):
+Each node has data + pointer to the next node.
+Limitation: You can only move forward, not backward.
+
+📌Problem with Singly Linked List
+If you're at a node and want to go back, you can't.
+Deleting a node in the middle requires extra steps since you don’t have a reference to the previous node.
+Solution → Doubly Linked List
+
+⚡A Doubly Linked List (DLL) node contains:
+Data – The actual value.
+Next pointer – Points to the next node.
+Prev pointer – Points to the previous node.
+
+🧠Example:
+class Node {
+    int data;
+    Node prev;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+public class DoublyLinkedList {
+    Node head;
+
+    ⚡// 1. Insert at beginning
+    public void insertAtBeginning(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            newNode.next = head; // link new node to current head
+            head.prev = newNode; // link old head back to new node
+            head = newNode;      // update head
+        }
+    }
+
+    ⚡// 2. Insert at end
+    public void insertAtEnd(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.next = newNode;   // link last node to new node
+        newNode.prev = temp;   // link new node back to last node
+    }
+
+    ⚡// 3. Delete at beginning
+    public void deleteAtBeginning() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+
+        head = head.next;
+        head.prev = null;
+    }
+
+    ⚡// 4. Delete at end
+    public void deleteAtEnd() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+
+        temp.prev.next = null;
+    }
+
+    ⚡// 5. Display forward
+    public void displayForward() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " <-> ");
+            temp = temp.next;
+        }
+        System.out.println("NULL");
+    }
+
+ 
+    public static void main(String[] args) {
+        DoublyLinkedList dll = new DoublyLinkedList();
+
+        dll.insertAtEnd(10);
+        dll.insertAtEnd(20);
+        dll.insertAtEnd(30);
+
+        System.out.println("Forward Traversal:");
+        dll.displayForward(); 
+
+        dll.insertAtBeginning(5);
+        dll.displayForward(); 
+
+        dll.deleteAtBeginning();
+        dll.displayForward(); 
+
+        dll.deleteAtEnd();
+        dll.displayForward(); 
+    }
+}
