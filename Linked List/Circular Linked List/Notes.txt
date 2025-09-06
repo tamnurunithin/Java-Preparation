@@ -1,0 +1,147 @@
+✅What is a Doubly Circular Linked List?
+A Doubly Circular Linked List is a special type of linked list that combines the features of both doubly linked list and circular linked list.
+
+Features
+Two pointers per node:
+prev → points to the previous node.
+next → points to the next node.
+
+Circular connection:
+The last node's next points back to the head.
+The head node's prev points to the last node.
+
+🧠Example:
+class Node {
+    int data;
+    Node prev;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+public class DoublyCircularLinkedList {
+    Node head;
+
+    ⚡// Insert at the beginning
+    public void insertAtBeginning(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+            head.next = head;
+            head.prev = head;
+            return;
+        }
+
+        Node last = head.prev;
+
+        newNode.next = head;
+        newNode.prev = last;
+
+        last.next = newNode;
+        head.prev = newNode;
+
+        head = newNode; // update head to new node
+    }
+
+    ⚡// Insert at the end
+    public void insertAtEnd(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+            head.next = head;
+            head.prev = head;
+            return;
+        }
+
+        Node last = head.prev;
+
+        last.next = newNode;
+        newNode.prev = last;
+
+        newNode.next = head;
+        head.prev = newNode;
+    }
+
+    // Delete at beginning
+    public void deleteAtBeginning() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (head.next == head) {
+            head = null; // only one node
+            return;
+        }
+
+        Node last = head.prev;
+        head = head.next;
+
+        head.prev = last;
+        last.next = head;
+    }
+
+    // Delete at end
+    public void deleteAtEnd() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (head.next == head) {
+            head = null; // only one node
+            return;
+        }
+
+        Node last = head.prev;
+        Node secondLast = last.prev;
+
+        secondLast.next = head;
+        head.prev = secondLast;
+    }
+
+    // Traverse forward
+    public void displayForward() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node temp = head;
+        do {
+            System.out.print(temp.data + " <-> ");
+            temp = temp.next;
+        } while (temp != head);
+        System.out.println("(back to head)");
+    }
+
+
+    public static void main(String[] args) {
+        DoublyCircularLinkedList dcll = new DoublyCircularLinkedList();
+
+        System.out.println("Inserting at end:");
+        dcll.insertAtEnd(10);
+        dcll.insertAtEnd(20);
+        dcll.insertAtEnd(30);
+        dcll.displayForward(); // 10 <-> 20 <-> 30 <-> (back to head)
+
+        System.out.println("\nInserting at beginning:");
+        dcll.insertAtBeginning(5);
+        dcll.displayForward(); // 5 <-> 10 <-> 20 <-> 30 <-> (back to head)
+
+
+        System.out.println("\nDeleting at beginning:");
+        dcll.deleteAtBeginning();
+        dcll.displayForward(); // 10 <-> 20 <-> 30 <-> (back to head)
+
+        System.out.println("\nDeleting at end:");
+        dcll.deleteAtEnd();
+        dcll.displayForward(); // 10 <-> 20 <-> (back to head)
+    }
+}
