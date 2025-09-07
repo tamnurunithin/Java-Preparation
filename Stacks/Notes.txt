@@ -1,0 +1,125 @@
+✅Stacks in Java 
+1. What is a Stack?
+A Stack is a linear data structure that follows the LIFO (Last In, First Out) principle.
+This means the last element inserted will be the first element removed.
+Think of it like a stack of plates:
+You add plates on top (Push).
+You remove plates from the top (Pop).
+
+📌Stack Operations
+push(item)	    Adds an element to the top of the stack.	
+pop()	            Removes and returns the top element.	
+peek()	            Returns the top element without removing it.	
+isEmpty()	    Checks if the stack is empty.	
+search(element)	    Returns position of element from the top (1-based index).
+
+👀Stack in Java (Using java.util.Stack)
+Java provides a built-in Stack class in the java.util package.
+import java.util.Stack;
+
+🧠Stack Example Code by using built stack class
+import java.util.Stack;
+
+public class StackExample {
+    public static void main(String[] args) {
+        // Create a stack
+        Stack<Integer> stack = new Stack<>();
+
+        ⚡// PUSH - Adding elements
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        System.out.println("Stack after push operations: " + stack);
+
+        ⚡// PEEK - Check top element
+        System.out.println("Top element (peek): " + stack.peek());
+
+        ⚡// POP - Remove top element
+        int removedElement = stack.pop();
+        System.out.println("Popped element: " + removedElement);
+        System.out.println("Stack after pop operation: " + stack);
+
+        ⚡// Check if stack is empty
+        System.out.println("Is stack empty? " + stack.isEmpty());
+
+        ⚡// SEARCH - Find position of element
+        int position = stack.search(10); // position starts from 1 (top = 1)
+        System.out.println("Position of 10 from top: " + position);
+    }
+}
+
+⚡Real-World Examples of Stack
+Undo/Redo operations in text editors.
+Browser back and forward navigation.
+
+📌Custom Stack Implementation (Without Using java.util.Stack)
+You can also create your own stack using an array or linked list.
+Here’s an example using array:
+🧠Example:
+class MyStack {
+    private int maxSize;
+    private int top;
+    private int[] stackArray;
+
+    // Constructor
+    public MyStack(int size) {
+        maxSize = size;
+        stackArray = new int[maxSize];
+        top = -1; // Stack is empty
+    }
+
+    ⚡// PUSH
+    public void push(int value) {
+        if (top == maxSize - 1) {
+            System.out.println("Stack Overflow! Cannot push " + value);
+        } else {
+            stackArray[++top] = value;
+            System.out.println(value + " pushed to stack");
+        }
+    }
+
+    ⚡// POP
+    public int pop() {
+        if (top == -1) {
+            System.out.println("Stack Underflow! Cannot pop");
+            return -1;
+        } else {
+            return stackArray[top--];
+        }
+    }
+
+    ⚡// PEEK
+    public int peek() {
+        if (top == -1) {
+            System.out.println("Stack is empty");
+            return -1;
+        }
+        return stackArray[top];
+    }
+
+    ⚡// Check if empty
+    public boolean isEmpty() {
+        return (top == -1);
+    }
+}
+public class CustomStackExample {
+    public static void main(String[] args) {
+        MyStack stack = new MyStack(5);
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        System.out.println("Top element: " + stack.peek());
+        System.out.println("Popped: " + stack.pop());
+        System.out.println("Is empty? " + stack.isEmpty());
+    }
+}
+
+
+
+
+
+
+
+
+
+
