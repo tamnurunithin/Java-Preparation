@@ -12,7 +12,7 @@ Handling requests in a web server.
 
 📌Basic Queue Operations
 Operation	         Description	
-Enqueue	                 Insert element at the rear	
+Enqueue	         Insert element at the rear	
 Dequeue			 Remove element from the front	
 Peek/Front		 View the front element	
 isEmpty			 Check if the queue is empty	
