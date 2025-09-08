@@ -1,0 +1,169 @@
+✅Introduction to Queue
+A Queue is a linear data structure that follows the FIFO (First In, First Out) principle.
+Think of a queue like a line at a ticket counter:
+The first person to enter the line is the first to get served.
+Insertion happens at the rear (enqueue).
+Deletion happens at the front (dequeue).
+
+👀Real-life Examples:
+Printing jobs in a printer.
+Task scheduling in operating systems.
+Handling requests in a web server.
+
+📌Basic Queue Operations
+Operation	         Description	
+Enqueue	                 Insert element at the rear	
+Dequeue			 Remove element from the front	
+Peek/Front		 View the front element	
+isEmpty			 Check if the queue is empty	
+isFull			 Check if the queue is full (only for static array)
+
+
+📌Queue Representation in Data Structure
+A queue can be implemented using:
+Array
+Linked List
+
+
+⚡Queue Example in Java (Using LinkedList)
+Java provides a built-in Queue interface in java.util.
+🧠Example:
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueExample {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+
+        ⚡// Enqueue
+        queue.add(10);
+        queue.add(20);
+        queue.add(30);
+
+        System.out.println("Queue: " + queue);
+
+        ⚡// Dequeue
+        int removed = queue.remove();
+        System.out.println("Removed Element: " + removed);
+
+        ⚡// Peek
+        System.out.println("Front Element: " + queue.peek());
+
+        ⚡// Check if empty
+        System.out.println("Is queue empty? " + queue.isEmpty());
+    }
+}
+//Output:
+Queue: [10, 20, 30]
+Removed Element: 10
+Front Element: 20
+Is queue empty? false
+
+
+✅Queue Using Array (Static Queue)
+Logic:
+Fixed size array.
+Maintain front and rear pointers.
+Initially, front = rear = -1.
+
+🧠Example:
+// Queue implementation using Array in Java
+import java.util.Scanner;
+
+class ArrayQueue {
+    int[] arr;
+    int front, rear, size;
+
+    // Constructor to initialize the queue
+    ArrayQueue(int capacity) {
+        arr = new int[capacity];
+        front = rear = -1;
+        size = capacity;
+    }
+
+    // Enqueue - Insert element at rear
+    void enqueue(int data) {
+        if (rear == size - 1) {
+            System.out.println("Queue is full! Cannot insert " + data);
+            return;
+        }
+        if (front == -1) front = 0; // first insertion
+        arr[++rear] = data;
+        System.out.println(data + " inserted into the queue.");
+    }
+
+    // Dequeue - Remove element from front
+    int dequeue() {
+        if (front == -1 || front > rear) {
+            System.out.println("Queue is empty! Cannot dequeue.");
+            return -1;
+        }
+        int removed = arr[front++];
+        System.out.println(removed + " removed from the queue.");
+        return removed;
+    }
+
+    // Peek - Get the front element without removing
+    int peek() {
+        if (front == -1 || front > rear) {
+            System.out.println("Queue is empty! Nothing to peek.");
+            return -1;
+        }
+        return arr[front];
+    }
+
+    // Check if the queue is empty
+    boolean isEmpty() {
+        return (front == -1 || front > rear);
+    }
+
+    // Display all elements in the queue
+    void display() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty! Nothing to display.");
+            return;
+        }
+        System.out.print("Queue elements: ");
+        for (int i = front; i <= rear; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+}
+
+// Main class to test the ArrayQueue
+public class QueueUsingArray {
+    public static void main(String[] args) {
+        // Create a queue of size 5
+        ArrayQueue queue = new ArrayQueue(5);
+
+        // Perform simple operations
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+
+        queue.display(); // Display current elements
+
+        System.out.println("Front element is: " + queue.peek());
+
+        queue.dequeue();
+        queue.display();
+
+        queue.enqueue(40);
+        queue.enqueue(50);
+        queue.enqueue(60); // This should show queue full
+
+        queue.display();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
