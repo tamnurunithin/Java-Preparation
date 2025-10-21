@@ -1,0 +1,21 @@
+✅Duplicates In Java
+import java.util.HashSet;
+import java.util.Set;
+
+public class DuplicateInArray {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5, 2, 3, 6};
+
+        Set<Integer> seen = new HashSet<>();
+        Set<Integer> duplicates = new HashSet<>();
+
+        for (int num : numbers) {
+            if (!seen.add(num)) { // if add() returns false, it’s already seen
+                duplicates.add(num);
+            }
+        }
+
+        System.out.println("Duplicate elements: " + duplicates);
+    }
+}
+Duplicate elements: [2, 3]
