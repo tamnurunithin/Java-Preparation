@@ -1,0 +1,30 @@
+✅Find Intersection of Two Arrays
+Problem Statement
+Write a program to find the intersection of two arrays.
+Input
+a[] = {1, 2, 3, 4}
+b[] = {3, 4, 5, 6}
+Output
+3, 4
+Explanation
+The intersection of two arrays is the set of elements that are present in both
+arrays.
+
+📌Program
+import java.util.HashSet;
+public class learn2code {
+ public static void main(String[] args) {
+ int[] a = {1, 2, 3, 4};
+ int[] b = {3, 4, 5, 6};
+ HashSet<Integer> set = new HashSet<>();
+for (int i = 0; i < a.length; i++) {
+ set.add(a[i]);
+ }
+ System.out.print("Intersection: ");
+ for (int i = 0; i < b.length; i++) {
+ if (set.contains(b[i])) {
+ System.out.print(b[i] + " ");
+ }
+ }
+ }
+}
