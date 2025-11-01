@@ -1,0 +1,26 @@
+✅Second Smallest Num In Array
+Example:
+[10, 4, 3, 50, 23, 90]
+output:
+4
+class Solution(){
+public int secondsmallest(int[] nums){
+if(nums.length<2){
+throw new IllegalArgumentException("minimum 2 elements are required to find second smallest ")
+}
+int smallest = Integer.MIN_VALUE;
+int secondLargest = Integer.MIN_VALUE;
+for(int num:nums){
+if(num<smallest){
+secondsmallest=smallest;
+smallest=num;
+}
+else if(num>smallest && num<secondsmallest){
+secondsmallest=num;
+}
+if(secondsmallest==Integer.MAX_VALUE){
+throw new IllegalArgumentException("Cannot Find Second Smallest");
+}
+return secondsmallest;
+}
+}

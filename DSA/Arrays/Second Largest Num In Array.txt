@@ -1,0 +1,26 @@
+✅Second Largest Num In Array
+Example:
+[10, 4, 3, 50, 23, 90]
+output:
+50
+class Solution(){
+public int secondlarge(int[] nums){
+if(nums.length<2){
+throw new IllegalArgumentException("minimum 2 elements are required to find second largest ")
+}
+int largest = Integer.MIN_VALUE;
+int secondLargest = Integer.MIN_VALUE;
+for(int num:nums){
+if(num>largest){
+secondlargest=largest;
+largest=num;
+}
+else if(num<largest && num>secondlargest){
+secondlargest=num;
+}
+if(secondlargest==Integer.MAX_VALUE){
+throw new IllegalArgumentException("Cannot Find Second Largest");
+}
+return secondlargest;
+}
+}
