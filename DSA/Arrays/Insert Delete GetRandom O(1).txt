@@ -1,0 +1,43 @@
+380.✅Insert Delete GetRandom O(1)
+Example 1:
+Input
+["RandomizedSet", "insert", "remove", "insert", "getRandom", "remove", "insert", "getRandom"]
+[[], [1], [2], [2], [], [1], [2], []]
+Output
+[null, true, false, true, 2, true, false, 2]
+📌
+class RandomizedSet {
+    private Map<Integer,Integer> map;
+    private List<Integer> list;
+    private Random rand;
+    public RandomizedSet() {
+        map = new HashMap<>();
+        list = new ArrayList<>();
+        rand = new Random();
+    }
+    
+    public boolean insert(int val) {
+        if(map.containsKey(val)) return false;
+        list.add(val);
+        map.put(val,list.size()-1);
+        return true;
+    }
+    public boolean remove(int val) {
+        if(!map.containsKey(val)) return false;
+        int index = map.get(val);
+        int lastelement = list.get(list.size()-1);
+        //swap
+        list.set(index,lastelement);
+        map.put(lastelement,index);
+        //remove last element
+        list.remove(list.size()-1);
+        map.remove(val);
+        return true;
+    }
+    
+    public int getRandom() {
+        int random = rand.nextInt(list.size());
+        return list.get(random); 
+    }
+}
+
