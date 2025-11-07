@@ -15,7 +15,7 @@ while(!strs[i].startsWith(prefix)){
 //remove the last character if prefix do not match
 prefix = prefix.substring(0,prefix.length()-1);
 //if prefix is empty
-if(prefix.isEmpty(){
+if(prefix.isEmpty()){
 return "";
 }
 }
