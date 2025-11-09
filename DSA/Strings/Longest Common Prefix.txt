@@ -1,0 +1,26 @@
+14.✅Longest Common Prefix
+Example 1:
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+📌
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+if(strs==null || strs.length==0) return "";
+//Consider first string from an array is prefix
+String prefix = strs[0];
+//Compare prefix with other strings
+for(int i=1;i<strs.length;i++){
+//If Current string is not matching with the prefix
+while(!strs[i].startsWith(prefix)){
+//remove the last character if prefix do not match
+prefix = prefix.substring(0,prefix.length()-1);
+//if prefix is empty
+if(prefix.isEmpty()){
+return "";
+}
+}
+}
+return prefix;
+}
+}
+
