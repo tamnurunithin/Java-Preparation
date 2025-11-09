@@ -1,0 +1,21 @@
+392.✅Is Subsequence
+Example 1:
+Input: s = "abc", t = "ahbgdc"
+Output: true
+📌
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        //Intialise Two pointers
+        int i =0; //i for s string
+        int j=0;  //j for t string
+        //i and j should be less than its string
+        while(i<s.length() && j<t.length()){
+            if(s.charAt(i)==t.charAt(j)){   //if both pointers match increment i
+                i++;
+            }
+            j++;
+        }
+        return i==s.length();
+        
+    }
+}
