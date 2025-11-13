@@ -1,0 +1,33 @@
+✅Minimum Size SubArray Sum
+Input:
+target = 7, nums = [2,3,1,2,4,3]
+Output:
+2
+⚡ Approach (Sliding Window)
+1. Initialize two pointers (left and right) and a variable sum = 0 to represent the current window’s total.
+2. Expand the window by moving right and adding nums[right] to sum until sum becomes greater than or equal to the target.
+3. Shrink the window from the left side (move left forward and subtract nums[left]) to find the smallest possible window that still satisfies the condition.
+4. Track the minimum length of all valid windows, and if no window meets the target, return 0.
+📌
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int n = nums.length;
+        int left = 0;
+        int sum = 0;
+        int minLength = Integer.MAX_VALUE;
+
+        for (int right = 0; right < n; right++) {
+            sum += nums[right];  // expand the window
+
+            // shrink the window while sum ≥ target
+            while (sum >= target) {
+                minLength = Math.min(minLength, right - left + 1);
+                sum -= nums[left];  // remove leftmost element
+                left++;
+            }
+        }
+
+        // if no valid subarray found, return 0
+        return (minLength == Integer.MAX_VALUE) ? 0 : minLength;
+    }
+}
