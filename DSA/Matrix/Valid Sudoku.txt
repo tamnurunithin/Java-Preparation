@@ -1,0 +1,55 @@
+36.✅Valid Sudoku
+Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+1.Each row must contain the digits 1-9 without repetition.
+2.Each column must contain the digits 1-9 without repetition.
+3.Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+Note:
+A Sudoku board (partially filled) could be valid but is not necessarily solvable.
+Only the filled cells need to be validated according to the mentioned rules.
+📌
+public class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        // trackers: rows[r][num], cols[c][num], boxes[b][num]
+        boolean[][] rows = new boolean[9][9];
+        boolean[][] cols = new boolean[9][9];
+        boolean[][] boxes = new boolean[9][9];
+
+        for (int r = 0; r < 9; r++) {
+            for (int c = 0; c < 9; c++) {
+                char ch = board[r][c];
+                if (ch == '.') continue;               // skip empties
+
+                int num = ch - '1';                    // '1'..'9' -> 0..8
+                if (num < 0 || num > 8) return false;  // defensive check
+
+                int boxIndex = (r / 3) * 3 + (c / 3);
+
+                // if already seen in row, column or box -> invalid
+                if (rows[r][num] || cols[c][num] || boxes[boxIndex][num]) {
+                    return false;
+                }
+                // mark as seen
+                rows[r][num] = true;
+                cols[c][num] = true;
+                boxes[boxIndex][num] = true;
+            }
+        }
+        return true;
+    }
+    // quick test harness
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        char[][] board = {
+            {'5','3','.','.','7','.','.','.','.'},
+            {'6','.','.','1','9','5','.','.','.'},
+            {'.','9','8','.','.','.','.','6','.'},
+            {'8','.','.','.','6','.','.','.','3'},
+            {'4','.','.','8','.','3','.','.','1'},
+            {'7','.','.','.','2','.','.','.','6'},
+            {'.','6','.','.','.','.','2','8','.'},
+            {'.','.','.','4','1','9','.','.','5'},
+            {'.','.','.','.','8','.','.','7','9'}
+        };
+        System.out.println(sol.isValidSudoku(board)); // expected: true
+    }
+}
