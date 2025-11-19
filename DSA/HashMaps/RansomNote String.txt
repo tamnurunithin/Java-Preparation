@@ -1,0 +1,30 @@
+383.✅Ransom Note
+Example 3:
+Input: ransomNote = "aa", magazine = "aab"
+Output: true
+✅Approch:
+//use hasmap to count character and its count
+//check does string1 chracters match with string2
+//we make both characters or key values to zero
+
+📌
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        //use hasmap to count character and its count
+        HashMap<Character, Integer> map = new HashMap<>();
+        //count each character from string1
+        for(char ch : magazine.toCharArray()){
+            map.put(ch, map.getOrDefault(ch,0)+1);
+        }
+        //count each character from string2
+        for(char ch : ransomNote.toCharArray()){
+            if(!map.containsKey(ch) || map.get(ch)==0){     //check does string1 chracters match with string2
+                return false;
+            }
+            map.put(ch,map.get(ch)-1);                     //we make both characters or key values to zero
+
+        }
+        return true;
+        
+    }
+}
