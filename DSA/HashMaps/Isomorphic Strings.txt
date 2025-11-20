@@ -1,0 +1,43 @@
+205.✅Isomorphic Strings
+✅Example 1:
+Input: s = "egg", t = "add"
+Output: true
+
+✅Approach
+1.If lengths differ, return false.
+2.Create two HashMaps: one for s → t, one for t → s.
+3.Loop through each character in both strings.
+4.Check both mappings:
+If mapping exists, it must match the current character.
+If no mapping, create a new one.
+5.If all characters follow consistent mapping → return true.
+
+📌class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if (s.length() != t.length()) return false;
+
+        HashMap<Character, Character> mapST = new HashMap<>();
+        HashMap<Character, Character> mapTS = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c1 = s.charAt(i);
+            char c2 = t.charAt(i);
+
+            // If s -> t mapping exists but not matching current char
+            if (mapST.containsKey(c1)) {
+                if (mapST.get(c1) != c2) return false;
+            } else {
+                mapST.put(c1, c2);
+            }
+
+            // If t -> s mapping exists but not matching current char
+            if (mapTS.containsKey(c2)) {
+                if (mapTS.get(c2) != c1) return false;
+            } else {
+                mapTS.put(c2, c1);
+            }
+        }
+
+        return true;
+    }
+}
