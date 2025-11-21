@@ -1,0 +1,53 @@
+290.✅Word Pattern
+Example 1:
+Input: pattern = "abba", s = "dog cat cat dog"
+Output: true
+a maps to dog
+b maps to cat unique
+✅Approch:
+1.Split
+2.Length!=No of Words
+3.Two Hashmaps
+4.Scan each word and check they are equal
+5.If equal return true
+📌
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String[] words = s.split(" ");
+        
+        if (pattern.length() != words.length) {
+            return false;
+        }
+
+        HashMap<Character, String> map1 = new HashMap<>();
+        HashMap<String, Character> map2 = new HashMap<>();
+
+        for (int i = 0; i < pattern.length(); i++) {
+            char ch = pattern.charAt(i);
+            String word = words[i];
+
+            // If char already mapped, check if matches
+            if (map1.containsKey(ch)) {
+                if (!map1.get(ch).equals(word)) {
+                    return false;
+                }
+            }
+
+            // If word already mapped, check if matches
+            if (map2.containsKey(word)) {
+                if (map2.get(word) != ch) {
+                    return false;
+                }
+            }
+
+            // Create new mappings
+            map1.put(ch, word);
+            map2.put(word, ch);
+        }
+
+        return true;
+        
+        
+        
+    }
+}
