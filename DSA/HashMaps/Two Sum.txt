@@ -1,0 +1,32 @@
+1.✅Two Sum
+Example 1:
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+✅Approch:
+1.Use Hashmaps to  store numbers and its indexes
+2.Scan each num and find complement
+3.Check if Complement is not present in map add their num value and indexes into map
+4.If complement preseny return indexes of present num and already stored complement num index
+5.Return Empty Array if no values equals to target
+📌
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        //create HashMap to store value and its count
+        HashMap<Integer,Integer> map = new HashMap<>();
+        //Scan each number and find complement number
+        // comp = target - num[i]
+        for(int i =0;i<nums.length;i++){
+            int complement = target - nums[i];
+            if(map.containsKey(complement)){
+                return new int[]{
+                    map.get(complement),i
+                };
+            }
+            //If the complementvalue is not present then return  their num values and indexes
+            map.put(nums[i],i);
+        }
+        //if no valid numbers are equsl to target return empty
+        return new int[] {};   
+    }
+}
