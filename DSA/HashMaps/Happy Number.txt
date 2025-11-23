@@ -1,0 +1,50 @@
+✅202.Happy Number Example 
+Let’s take the number 19.
+Step-by-step:
+1️⃣ Start with 19
+Digits: 1, 9
+Sum of squares →
+1² + 9² = 1 + 81 = 82
+2️⃣ Now take 82
+Digits: 8, 2
+8² + 2² = 64 + 4 = 68
+3️⃣ Now take 68
+Digits: 6, 8
+6² + 8² = 36 + 64 = 100
+4️⃣ Now take 100
+Digits: 1, 0, 0
+1² + 0² + 0² = 1
+✅Approch:
+1.Create Hashmaps to store sum of the squres of value equals one and Boolean
+2.Scan and Calculate  sum of the squres of num
+3.Check wheather the num is already present in map
+4.If present enter into cycle return false(unhappy) else add to map 
+5.Repeat until num becomes 1 then return true
+📌
+class Solution {
+    //Scan and calculate the Sum of Squares Of Digits
+    private int DigitSumSquare(int n){
+        int sum =0;
+        while(n>0){
+            int digit=n%10;
+            sum+=digit*digit;
+            n/=10;
+        }
+        return sum;
+
+    }
+    public boolean isHappy(int n) {
+        //Create Hashmaps to store sum of the squres of value equals one and Boolean
+        HashMap<Integer,Boolean> map=new HashMap<>();
+        while(n!=1){
+            if(map.containsKey(n)){
+                return false;
+            }
+            map.put(n,true);
+            n=DigitSumSquare(n);
+        }
+        return true;
+
+        
+    }
+}
