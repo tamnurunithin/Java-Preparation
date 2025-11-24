@@ -1,0 +1,35 @@
+219.✅Contains Duplicate II
+Example 1:
+Input: nums = [1,2,3,1], k = 3
+Output: true
+✅Approach 
+1.Create a HashMap to store:
+	number → last index where it appeared
+2.Loop through the array.
+3.For every number:
+	If it is already in the map → check the difference of indices
+	If i - previousIndex <= k → return true
+4.Update the map with the current index.
+📌
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+
+            // If number seen before check the distance
+            if (map.containsKey(num)) {
+                int prevIndex = map.get(num);
+                if (i - prevIndex <= k) {
+                    return true;
+                }
+            }
+
+            // Update the last seen index
+            map.put(num, i);
+        }
+
+        return false;
+    }
+}
