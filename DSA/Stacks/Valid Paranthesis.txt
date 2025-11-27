@@ -1,0 +1,36 @@
+20.✅Valid Parentheses
+Example 1:
+Input: s = "()[]{}"
+Output: true
+✅Approch:
+1.Create a Stack
+2.Scan Each Character if its opening push into stack
+3.If its close
+	Emptystack---Invalid
+	Mismatching---Invalid
+	Pop from Stack and checks it matches with current Char
+4.Return Emptystack if its valid
+📌
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for(char ch : s.toCharArray()){
+            if(ch=='(' || ch=='{' || ch=='['){
+                stack.push(ch);
+            }
+            else{
+                if(stack.isEmpty()){
+                    return false;
+                }
+                char top = stack.pop();
+                if((ch==')'&& top!='(')|| (ch=='}' && top!='{')|| (ch==']' && top!='[')){
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+        
+    }
+}
+	
+	
