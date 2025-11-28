@@ -1,0 +1,45 @@
+71.✅Simplify Path
+🧠 Example
+Input:
+"/a/./b/../../c/"
+Process:
+push "a"
+"." → ignore
+push "b"
+".." → pop "b"
+".." → pop "a"
+push "c"
+Stack: ["c"]
+Final Answer → "/c"
+✅Approch:
+1.Split the given path using /.
+2.Loop through each part:
+	If the part is "" (empty), "." → ignore it
+	If the part is ".." → pop from stack if not empty
+3.Otherwise → push the folder name into the stack
+4.After processing, build the final path by joining stack values with /.
+5.If stack is empty → return "/".
+📌
+class Solution {
+    public String simplifyPath(String path) {
+        Stack<String> stack = new Stack<>();
+        String[] parts = path.split("/");
+        for (String part : parts) {
+            if (part.equals("") || part.equals(".")) {
+                continue;
+            } else if (part.equals("..")) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+            } else {
+                stack.push(part);
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        for (String dir : stack) {
+            result.append("/").append(dir);
+        }
+        return result.length() == 0 ? "/" : result.toString();
+        
+    }
+}
