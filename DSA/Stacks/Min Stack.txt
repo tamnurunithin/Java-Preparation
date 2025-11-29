@@ -1,0 +1,99 @@
+155.✅Min Stack
+✅Approch:
+How It Works
+When pushing a value:
+Push into mainStack.
+Compare value with minStack.peek():
+If minStack is empty OR new value <= current min → push it into minStack.
+When popping:
+Pop from mainStack.
+If both top values are equal → pop from minStack too.
+getMin() → return top of minStack.
+✅Debug:
+Operations: push(5), push(3), push(7), push(3), pop(), getMin(), pop(), getMin()
+Step 0: Initialize
+mainStack = []
+minStack = []
+
+Step 1: push(5)
+Push into mainStack: [5]
+minStack is empty → push 5 too: [5]
+Stacks now:
+mainStack = [5]
+minStack = [5]
+
+Step 2: push(3)
+Push into mainStack: [5, 3]
+Compare 3 with minStack.peek() = 5 → 3 ≤ 5 → push into minStack: [5, 3]
+Stacks now:
+mainStack = [5, 3]
+minStack = [5, 3]
+
+Step 3: push(7)
+Push into mainStack: [5, 3, 7]
+Compare 7 with minStack.peek() = 3 → 7 > 3 → do NOT push into minStack
+Stacks now:
+mainStack = [5, 3, 7]
+minStack = [5, 3]
+
+Step 4: push(3)
+Push into mainStack: [5, 3, 7, 3]
+Compare 3 with minStack.peek() = 3 → 3 ≤ 3 → push into minStack: [5, 3, 3]
+Stacks now:
+mainStack = [5, 3, 7, 3]
+minStack = [5, 3, 3]
+
+Step 5: pop()
+Pop from mainStack: 3
+Compare with minStack.peek() = 3 → equal → also pop from minStack
+Stacks now:
+mainStack = [5, 3, 7]
+minStack = [5, 3]
+
+Step 6: getMin()
+Return minStack.peek() = 3 ✅
+
+Step 7: pop()
+Pop from mainStack: 7
+
+Compare with minStack.peek() = 3 → not equal → do NOT pop from minStack
+
+Stacks now:
+mainStack = [5, 3]
+minStack = [5, 3]
+
+Step 8: getMin()
+Return minStack.peek() = 3 ✅
+📌
+class MinStack {
+    private Stack<Integer> mainStack;
+    private Stack<Integer> minStack;
+
+    public MinStack() {
+        mainStack = new Stack<>();
+        minStack = new Stack<>();
+    }
+
+    public void push(int val) {
+        mainStack.push(val);
+
+        if (minStack.isEmpty() || val <= minStack.peek()) {
+            minStack.push(val);
+        }
+    }
+
+    public void pop() {
+        if (mainStack.peek().equals(minStack.peek())) {
+            minStack.pop();
+        }
+        mainStack.pop();
+    }
+
+    public int top() {
+        return mainStack.peek();
+    }
+
+    public int getMin() {
+        return minStack.peek();
+    }
+}
