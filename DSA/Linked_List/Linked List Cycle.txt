@@ -1,0 +1,28 @@
+141.✅Linked List Cycle
+✅Approach: Floyd’s Cycle Detection Algorithm (Tortoise & Hare)
+We use two pointers:
+Pointer	Speed
+slow	moves 1 step at a time
+fast	moves 2 steps at a time
+If the list has a cycle → fast will eventually meet slow.
+If no cycle → fast will reach null.
+📌
+class Solution {
+    public boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null) return false;
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;           // move slow by 1
+            fast = fast.next.next;      // move fast by 2
+
+            if (slow == fast) {         // collision → cycle exists
+                return true;
+            }
+        }
+
+        return false; // reached end → no cycle
+    }
+}
