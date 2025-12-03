@@ -1,0 +1,16 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int j = 0; // Pointer for non-zero position
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                // Swap current element with element at pointer j
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+
+                j++; // Move j forward
+            }
+        }
+    }
+}
