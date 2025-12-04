@@ -1,0 +1,38 @@
+✅Maximum Element
+Input:[1,2,3,4,5,6,1,2];
+Output:[1];
+Note:
+Don't use sorting and maps
+✅Simple Logic
+1.Take the first element as reference
+2.If any later element is greater, remove everything except reference (first element)
+3.If no element is greater, keep the input
+📌
+public class MaxFilter {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4,5,1,2};
+        
+        int first = arr[0];
+        boolean foundGreater = false;
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > first) {
+                foundGreater = true;
+                break;
+            }
+        }
+
+        // Print output
+        System.out.print("[");
+        if (foundGreater) {
+            System.out.print(first);
+        } else {
+            // If no element is greater, print full array
+            for (int i = 0; i < arr.length; i++) {
+                System.out.print(arr[i]);
+                if (i < arr.length - 1) System.out.print(",");
+            }
+        }
+        System.out.println("]");
+    }
+}
