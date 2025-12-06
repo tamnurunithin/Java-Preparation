@@ -1,0 +1,38 @@
+⚡What is synchronized in Java?
+synchronized is a keyword in Java used to control access to a shared resource in multithreading.
+It ensures that only one thread at a time can execute a block of code or method, preventing data inconsistency.
+
+⚡Why use synchronized?
+To make code thread-safe
+To prevent race conditions (multiple threads modifying the same data at the same time)
+To ensure correct results when multiple threads work on shared resources
+Ways to use synchronized:
+
+⚡Synchronized Method – the whole method is locked:
+public synchronized void increment() {
+    count++;
+}
+
+
+⚡Synchronized Block – only part of the code is locked:
+public void increment() {
+    synchronized(this) {
+        count++;
+    }
+}
+📌
+class Counter {
+    private int count = 0;
+    public synchronized void increment() {
+        count++;
+    }
+    public int getCount() {
+        return count;
+    }
+}
+public class TestSync {
+    public static void main(String[] args) {
+        Counter c = new Counter();
+        c.increment(); // only one thread can increment at a time
+    }
+}
