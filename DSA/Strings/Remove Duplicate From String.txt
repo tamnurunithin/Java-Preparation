@@ -1,0 +1,28 @@
+✅Remove Duplicates From String
+Example:
+input:NithiN
+output:Nith
+✅Approch:
+1.Traverse and finf char
+2.If it appears first time make it zero and add to result
+3.Later make it equals to 1 that mean it already apparaed
+📌
+class Main {
+    public static void main(String[] args) {
+
+        String s = "NithiN";   // input
+        int[] freq = new int[256];
+        String result = "";
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            if (freq[ch] == 0) {   // first time seeing this char
+                result = result + ch;
+                freq[ch] = 1;
+            }
+        }
+
+        System.out.println(result);
+    }
+}
