@@ -1,0 +1,42 @@
+✅Majority Element n/2
+Input:[3, 3, 4, 2, 4, 4, 2, 4, 4]
+Output:4
+✅class Main {
+    public static void main(String[] args) {
+        int[] arr = {3, 3, 4, 2, 4, 4, 2, 4, 4};
+        int n = arr.length;
+
+        // Step 1: Find candidate
+        int candidate = arr[0];
+        int count = 1;
+
+        for (int i = 1; i < n; i++) {
+            if (arr[i] == candidate) {
+                count++;
+            } else {
+                count--;
+                if (count == 0) {
+                    candidate = arr[i];
+                    count = 1;
+                }
+            }
+        }
+
+        // Step 2: Verify candidate
+        count = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == candidate) count++;
+        }
+
+        // Use integer to indicate presence
+        int found = 0;
+        if (count > n / 2) {
+            System.out.println("Majority element: " + candidate);
+            found = 1;
+        }
+
+        if (found == 0) {
+            System.out.println("No majority element");
+        }
+    }
+}
