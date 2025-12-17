@@ -1,0 +1,29 @@
+✅GCD and LCM of the two numbers:
+Input: 12, 18
+Output:
+GCD = 6
+LCM = 36
+📌class Main {
+    public static void main(String[] args) {
+        int a = 12;
+        int b = 18;
+
+        int x = a;
+        int y = b;
+
+        // Find GCD
+        while (y != 0) {
+            int temp = y;
+            y = x % y;
+            x = temp;
+        }
+
+        int gcd = x;
+
+        // Find LCM
+        int lcm = (a * b) / gcd;
+
+        System.out.println("GCD = " + gcd);
+        System.out.println("LCM = " + lcm);
+    }
+}
