@@ -1,0 +1,31 @@
+✅Length Of Longest String
+✅ Approach
+Traverse the sentence character by characte
+Count characters of the current word
+Reset count when a space is found
+Track the maximum length
+📌
+class Main {
+    public static void main(String[] args) {
+        String sentence = "Java is very powerful language";
+
+        int maxLen = 0;
+        int currLen = 0;
+
+        for (int i = 0; i < sentence.length(); i++) {
+            char ch = sentence.charAt(i);
+
+            if (ch != ' ') {
+                currLen++;
+            } else {
+                maxLen = Math.max(maxLen, currLen);
+                currLen = 0;
+            }
+        }
+
+        // Check last word
+        maxLen = Math.max(maxLen, currLen);
+
+        System.out.println("Length of longest word: " + maxLen);
+    }
+}
