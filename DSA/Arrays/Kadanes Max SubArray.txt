@@ -1,0 +1,29 @@
+✅Kadane’s Algorithm – Find maximum subarray sum.
+⚡Approch:
+1.Traverse and Keep adding elements to a currentSum
+2.If currentSum becomes greater than maxSum, update maxSum
+3.If currentSum becomes negative, reset it to 0
+📌
+public class KadaneAlgorithm {
+    public static void main(String[] args) {
+
+        int[] arr = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+
+        int currentSum = 0;
+        int maxSum = arr[0]; // initialize with first element
+
+        for (int i = 0; i < arr.length; i++) {
+            currentSum = currentSum + arr[i];
+
+            if (currentSum > maxSum) {
+                maxSum = currentSum;
+            }
+
+            if (currentSum < 0) {
+                currentSum = 0;
+            }
+        }
+
+        System.out.println("Maximum Subarray Sum = " + maxSum);
+    }
+}
