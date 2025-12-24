@@ -1,0 +1,39 @@
+✅Intersection Of Two Arrays
+⚡Approch:
+1.Take outer and inner loops
+2.compare elements of two arrays
+3.Add them into new array
+4.Inorder to add only duplicate only once 
+5.Declare a variable t traverse through new array and compare with num1 array if it exits break the loop
+6.If it occurs first time time add into new array
+📌
+
+
+class Main {
+    public static void main(String[] args) {
+        int[] num1={4,2,1,2,1,4};
+        int[] num2={4,2,3,2,3};
+        int k =0;
+        int[] intersection=new int[Math.max(num1.length,num2.length)];
+        for(int i=0;i<num1.length;i++){
+            for(int j=0;j<num2.length;j++){
+                if(num1[i]==num2[j]){
+                    int t;
+                    for(t=0;t<k;t++){
+                        if(intersection[t]==num1[i]){
+                            break;
+                        }
+                    }
+                    if(t==k){
+                        intersection[k++]=num1[i];
+                    }
+                }
+                
+            }
+        }
+        for(int i=0;i<k;i++){
+            System.out.println(intersection[i]);
+        }
+        
+    }
+}
