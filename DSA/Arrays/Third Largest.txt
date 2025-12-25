@@ -1,0 +1,29 @@
+✅Third Largest Number Without Inbuilt
+⚡Approch:
+1.Intialse first second and third elements as largest secondlargest and thirdlarget
+2.Follow order compare arr[i] with large then secondlarges and thirdlarge
+📌
+class Main {
+    public static void main(String[] args) {
+        int[] arr={70,10,50,20,90,40,60};
+        int largest=arr[0];
+        int secondlargest=arr[1];
+        int thirdlargest=arr[2];
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>largest){
+                thirdlargest=secondlargest;
+                secondlargest=largest;
+                largest=arr[i];
+            }else if(arr[i]>secondlargest && arr[i]!=largest){
+                thirdlargest=secondlargest;
+                secondlargest=arr[i];
+            }else if(  arr[i]>thirdlargest && arr[i]!=secondlargest && arr[i]!=largest ){
+                thirdlargest=arr[i];
+            }
+        }
+        System.out.println(largest);
+        System.out.println(secondlargest);
+        System.out.println(thirdlargest);
+        
+    }
+}
