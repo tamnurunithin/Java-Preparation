@@ -1,0 +1,27 @@
+✅All Numbers Disappeared in an Array
+⚡Approch:
+Create a frequency array of size n
+Increment the index corresponding to each number
+Example: number 4 → freq[3]++
+After counting, indices with value 0 are missing numbers
+Print i + 1 to map back to the actual number
+📌
+class Main {
+    public static void main(String[] args) {
+
+        int[] nums = {4,3,2,7,8,2,3,1};
+        int n = nums.length;
+
+        int[] freq = new int[n];  to n
+
+        
+        for (int i = 0; i < n; i++) {
+            freq[nums[i] - 1]++; // 
+        }
+        for (int i = 0; i < n; i++) {
+            if (freq[i] == 0) {
+                System.out.print((i + 1) + " ");
+            }
+        }
+    }
+}
