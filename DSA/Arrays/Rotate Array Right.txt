@@ -1,0 +1,29 @@
+✅Rotate Array Right
+⚡Approch:
+Traverse and copy elements from n-k to n into temp
+Traverse and copy elements from 0 to n-k into temp
+Traverse and copy elements from 0 to n into arr from temp
+Traverse and print all the elements 
+📌
+class Main {
+    public static void main(String[] args) {
+        int[] arr={1,2,3,4,5};
+        int k=2;
+        int n=arr.length;
+        k=k%n;
+        int[] temp=new int[n];
+        int index=0;
+        for(int i=n-k;i<n;i++){
+            temp[index++]=arr[i];
+        }
+        for(int i=0;i<n-k;i++){
+            temp[index++]=arr[i];
+        }
+        for(int i=0;i<n;i++){
+            arr[i]=temp[i];
+        }
+        for(int i=0;i<n;i++){
+            System.out.println(arr[i]);
+        }
+    }
+}
