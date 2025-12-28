@@ -1,0 +1,32 @@
+✅First Unique Character
+⚡Approch:
+Traverse and find character
+Add each character into frequency
+Convert ASCII to Index and also increase its count
+Traverse and check index number whose index count equals to 1
+Then print that character which is unique break the loop
+If foundindex is -1 then print no unique character
+📌
+class Main {
+    public static void main(String[] args) {
+        String str="nithin";
+        int n = str.length();
+        int[] freq=new int[26];
+        int foundindex=-1;
+        for(int i=0;i<n;i++){
+            char ch = str.charAt(i);
+            freq[ch-'a']++;
+        }
+        for(int i=0;i<n;i++){
+            char ch = str.charAt(i);
+            if(freq[ch-'a']==1){
+                foundindex=i;
+                System.out.println(ch+" "+i);
+                break;
+            }
+        }
+        if(foundindex==-1){
+            System.out.println("No Unique Element");
+        }
+    }
+}
