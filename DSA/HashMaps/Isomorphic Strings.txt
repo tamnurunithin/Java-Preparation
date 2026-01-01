@@ -24,7 +24,7 @@ If no mapping, create a new one.
             char c2 = t.charAt(i);
 
             // If s -> t mapping exists but not matching current char
-            if (mapST.containsKey(c1)) {
+            if (mapST.containsKey(c1)) { 
                 if (mapST.get(c1) != c2) return false;
             } else {
                 mapST.put(c1, c2);
