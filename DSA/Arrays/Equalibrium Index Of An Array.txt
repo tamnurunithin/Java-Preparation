@@ -1,0 +1,29 @@
+✅Equalibrium Of The Array
+⚡Approch:
+1.Find total sum of array
+2.Initialize leftSum = 0
+3.Traverse array Subtract current element from total → gives rightSum
+4.Compare leftSum and rightSum
+5.If equal → equilibrium index found
+6.If Notv add current element to leftSum
+📌
+class Main {
+    public static void main(String[] args) {
+        int[] arr = {-7, 1, 5, 2, -4, 3, 0};
+        int n = arr.length;
+        int totalsum =0;
+        for(int i =0;i<n;i++){
+            totalsum = totalsum+arr[i];
+        }
+        int leftsum =0;
+        for(int i=0;i<n;i++){
+            totalsum = totalsum-arr[i];
+            if(leftsum==totalsum){
+                System.out.println("Equilibrium Index:"+i);
+                return;
+            }
+            leftsum=leftsum+arr[i];
+        }
+        System.out.println("No Equilibrium index found");
+    }
+}
