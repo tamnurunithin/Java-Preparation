@@ -1,0 +1,25 @@
+public class Main {
+    public static void main(String[] args) {
+        String str1 = "abc";
+        String str2 = "def";
+        String shuffle = "dabecf";
+
+        if (str1.length() + str2.length() != shuffle.length()) {
+            System.out.println("Not a valid shuffle");
+        } else {
+            int i = 0, j = 0, k = 0;
+            while (k < shuffle.length()) {
+                if (i < str1.length() && str1.charAt(i) == shuffle.charAt(k)) {
+                    i++;
+                } else if (j < str2.length() && str2.charAt(j) == shuffle.charAt(k)) {
+                    j++;
+                } else {
+                    System.out.println("Not a valid shuffle");
+                    return;
+                }
+                k++;
+            }
+            System.out.println("Valid shuffle");
+        }
+    }
+}
