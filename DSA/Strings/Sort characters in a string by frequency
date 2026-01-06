@@ -1,0 +1,21 @@
+public class Main {
+    public static void main(String[] args) {
+        String str = "tree";
+        int[] freq = new int[256]; // assuming ASCII characters
+        
+        // Count frequency of each character
+        for (int i = 0; i < str.length(); i++) {
+            freq[str.charAt(i)]++;
+        }
+        
+        // Build output string
+        String result = "";
+        for (int i = 0; i < 256; i++) {
+            for (int j = 0; j < freq[i]; j++) {
+                result += (char) i;
+            }
+        }
+        
+        System.out.println(result);
+    }
+}
