@@ -1,0 +1,29 @@
+public class Main {
+    public static void main(String[] args) {
+        String s = "42";
+        int result = 0;
+        int sign = 1;
+        int i = 0;
+
+        // Skip whitespace
+        while (i < s.length() && s.charAt(i) == ' ') {
+            i++;
+        }
+
+        // Check sign
+        if (i < s.length() && (s.charAt(i) == '-' || s.charAt(i) == '+')) {
+            if (s.charAt(i) == '-') {
+                sign = -1;
+            }
+            i++;
+        }
+
+        // Convert to integer
+        while (i < s.length() && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            result = result * 10 + (s.charAt(i) - '0');
+            i++;
+        }
+
+        System.out.println(result * sign);
+    }
+}
