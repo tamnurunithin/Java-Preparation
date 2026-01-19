@@ -1,0 +1,31 @@
+✅Product Of All Elements Except Itself
+⚡Approch:
+1.Intialise left,right,and result
+2.Product Of all elements to the left are 1 consider left as first element
+3.Run a loop from i=1 to last element and product left and array elements
+4.Product of all elements to the right are 1 consider right as last element
+5.Run a loop from i=n-2 last but one element to greater than 0 and then product right and array elements
+📌
+class Main {
+    public static void main(String[] args) {
+        int [] arr ={1,2,3,4};
+        int n = arr.length;
+        int[] left= new int[n];
+        int[] right = new int[n];
+        int[] result=new int[n];
+        left[0]=1;
+        for(int i=1;i<n;i++){
+            left[i]=left[i-1]*arr[i-1];
+        }
+        right[n-1]=1;
+        for(int i=n-2;i>=0;i--){
+            right[i]=right[i+1]*arr[i+1];
+        }
+        for(int i=0;i<n;i++){
+            result[i]= left[i]*right[i];
+        }
+        for(int i=0;i<n;i++){
+            System.out.println(result[i]);
+        }
+    }
+}
