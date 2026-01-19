@@ -1,0 +1,23 @@
+public class Main {
+    public static void main(String[] args) {
+        String s = "abcabcbb";
+        int maxLength = 0;
+        int windowStart = 0;
+        int[] charIndex = new int[256]; // assuming ASCII characters
+
+        for (int i = 0; i < 256; i++) {
+            charIndex[i] = -1;
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (charIndex[c] >= windowStart) {
+                windowStart = charIndex[c] + 1;
+            }
+            charIndex[c] = i;
+            maxLength = Math.max(maxLength, i - windowStart + 1);
+        }
+
+        System.out.println(maxLength);
+    }
+}

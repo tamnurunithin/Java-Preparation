@@ -1,0 +1,22 @@
+
+public class Main {
+    public static void main(String[] args) {
+        String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+        Map<String, String> map = new HashMap<>();
+
+        for (String str : strs) {
+            char[] chars = str.toCharArray();
+            Arrays.sort(chars);
+            String key = new String(chars);
+            if (map.containsKey(key)) {
+                map.put(key, map.get(key) + " " + str);
+            } else {
+                map.put(key, str);
+            }
+        }
+
+        for (String group : map.values()) {
+            System.out.println(group);
+        }
+    }
+}
