@@ -1,0 +1,43 @@
+✅Valid Shuffle Or Not
+⚡Approch:
+1.Intialise three pointers for three strings that i=0;j=0;k=0;
+2.Run a while loop size of n3 and check string length match
+3.Run a loop for string1 and string3 check they match if they match increase i++
+4.Run a loop for string2 and string3 check they match if they match increase j++
+5.If not it is not a valid shuffle
+📌
+
+class Main {
+    public static void main(String[] args) {
+        String s1="abc";
+        String s2="def";
+        String s3="adbecf";
+        int n1=s1.length();
+        int n2=s2.length();
+        int n3=s3.length();
+        int i=0; 
+        int j=0;
+        int k=0;
+        if(n3!=n1+n2){
+            System.out.println("valid Shuffle");
+            return;
+        }
+        while(k<n3){
+            if(i<n1 && s3.charAt(k)==s1.charAt(i)){
+                i++;
+            }
+            else if(j<n2 && s3.charAt(k)==s2.charAt(j)){
+                j++;
+            }else{
+            System.out.println("Not valid Shuffle");
+            return;
+            }
+            k++;
+        }
+        if (i == n1 && j == n2){
+            System.out.println("Valid shuffle");
+        }else {
+            System.out.println("Not a valid shuffle"); }
+    }
+    
+}
