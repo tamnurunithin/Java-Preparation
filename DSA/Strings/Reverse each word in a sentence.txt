@@ -1,0 +1,34 @@
+✅Reverse Each Word In Sentence
+⚡Approch:
+1.Convert String into array of characters
+2.Traverse through array and if curret i equals to end or space 
+3.Intialise Left and Right
+4.Use While loop and swap left and right by using temp
+5.Update left by using start=i+1;
+6.Traverse from start and print the string now
+📌
+class Main {
+    public static void main(String[] args) {
+        String sentence="Hello World";
+        char[] arr=sentence.toCharArray();
+        int n =arr.length;
+        int start=0;
+        for(int i=0;i<=n;i++){
+            if(i==n || arr[i]==' '){
+                int left=start;
+                int right=i-1;
+                while(left<right){
+                    char temp=arr[left];
+                    arr[left]=arr[right];
+                    arr[right]=temp;
+                    left++;
+                    right--;
+                }
+                 start=i+1;
+            }
+        }
+        for(int i=0;i<n;i++){
+            System.out.println(arr[i]);
+        }
+    }
+}
