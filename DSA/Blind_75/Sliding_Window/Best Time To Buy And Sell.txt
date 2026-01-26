@@ -1,0 +1,48 @@
+✅Best Time To Buy And Sell
+⚡Approch:
+1.One Pass Greddy Approch
+2.Intialise minprofit and minprice as zeroindex
+3.Traverse from first index and update minprice
+4.Else if minprice is already present update profit= price-minprice
+5.Also Update maxprofit
+📌
+class Main {
+    public static void main(String[] args) {
+        int[] prices ={10,1,5,6,7,1};
+        int n = prices.length;
+        int minprice =prices[0];
+        int maxprofit =0;
+        for(int i=1;i<n;i++){
+            if(prices[i]<minprice){
+                minprice=prices[i];
+            }else{
+                int profit = prices[i]-minprice;
+                if(profit>maxprofit){
+                    maxprofit=profit;
+                }
+            }
+        }
+        System.out.println(maxprofit);
+    }
+}
+
+📌If No Transcations Happen Return zero
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int minprice = prices[0];
+        int maxprofit = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] < minprice) {
+                minprice = prices[i];
+            } else {
+                int profit = prices[i] - minprice;
+                if (profit > maxprofit) {
+                    maxprofit = profit;
+                }
+            }
+        }
+        return maxprofit;
+    }
+}
