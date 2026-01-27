@@ -1,0 +1,40 @@
+✅Longest Repeating Character Replacement
+⚡Appeoch:
+1.No of characters that need to be replace to make all characters same 
+Example:AABABBA to ABBA
+2.Finding max windowsize
+3.windowsize-Most_Repeated_Char > K then Shrink
+4.Most_Repeated_Char means add characters index value by using left and right into freq,compare index with mostrepeatedchar and update  Most_Repeated_Char
+5.Compare current windowsize with maxsize and update windowsize
+6.print the windowsize
+📌
+
+class Main {
+    public static void main(String[] args) {
+        String str ="AABABBA";
+        int k =1;
+        int maxlength=0;
+        int maxcount=0;
+        int n =str.length();
+        int[] freq=new int[26];
+        int left=0;
+        for(int right=0;right<n;right++){
+            int index = str.charAt(right)-'A';
+            freq[index]++;
+            if(freq[index]>maxcount){
+                maxcount=freq[index];
+            }
+             while((right-left+1)-maxcount>k){
+                 freq[str.charAt(left)-'A']--;
+                 left++;
+            }
+            int windowsize=right-left+1;
+            if(windowsize>maxlength){
+                maxlength=windowsize;
+            }
+            
+        }
+        System.out.println(maxlength);
+        
+    }
+}
