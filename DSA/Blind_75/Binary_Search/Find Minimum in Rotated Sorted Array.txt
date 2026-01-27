@@ -1,0 +1,26 @@
+✅Find Minimum in Rotated Sorted Array
+⚡Approch:
+1.Finding Minimum means making left=right where left is minimum
+2.Intialsie left,right inside while loop
+3.Find mid=left+(right-left)/2
+4.If mid > right then increase left=mid+1
+5.Else Mid equals to right
+6.Return left because it represents minimum element when left==right and loop ends
+📌
+class Main {
+    public static void main(String[] args) {
+        int[] nums={4,5,6,7,8,1,2,3};
+        int n =nums.length;
+        int left=0;
+        int right=n-1;
+        while(left<right){
+            int mid = left+(right-left)/2;
+            if(nums[mid]>nums[right]){
+                left=mid+1;
+            }else{
+                right=mid;
+            }
+        }
+        System.out.print(nums[left]);
+    }
+}
