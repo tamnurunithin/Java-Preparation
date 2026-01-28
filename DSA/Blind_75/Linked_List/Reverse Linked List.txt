@@ -1,0 +1,24 @@
+✅Reverse Linked List
+⚡Approch:
+1.Intialise prev, and current equals to head
+2.Run a while loop and check current value not equals to null
+3.Then store next value in ListNode next
+4.Now point current value to null to make reverse
+5.Make prev equals to current to update previous value from null to zero then zero to 1 at last prev will be 3
+6.Now move current value to next soo that it moves from 0 to 1 soo on until 3
+7.Print the prev value now
+📌
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;          
+            prev = curr;               
+            curr = next;               
+        }
+        return prev; 
+    }
+}
+
