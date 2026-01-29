@@ -1,0 +1,44 @@
+✅Linked List Cycle Detection
+⚡Approch:
+1.Three Building Blocks ListNode Class,Solution Class,Main Method
+2.Intialse slow and fast pointers that points to head
+3.Run a while Loop where fast pointer current and its next value should equals to null
+4.Move slow by one step and fast by 2 steps
+5.If slow and fast equals then cycle is present return true if not return false	
+📌
+class Main {
+    static class ListNode{
+        int val;
+        ListNode next;
+        ListNode(int val){
+            this.val=val;
+            this.next=null;
+        }
+    }
+    static class Solution{
+        public boolean hascycle(ListNode head){
+            if(head==null && head.next==null){
+                return false;
+            }
+            ListNode slow=head;
+            ListNode fast=head;
+            while(fast!=null && fast.next!=null){
+                slow=slow.next;
+                fast=fast.next.next;
+                if(slow==fast){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    public static void main(String[] args) {
+        ListNode head = new ListNode(3);
+        head.next = new ListNode(1);
+        head.next.next = new ListNode(2);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = head.next;
+        Solution sol = new Solution();
+        System.out.println(sol.hascycle(head));
+    }
+}
