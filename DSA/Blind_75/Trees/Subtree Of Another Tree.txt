@@ -1,0 +1,58 @@
+✅Subtree Of Another Tree
+⚡Approch:
+1.TreeNode Class:
+2.Solution class:
+	If subroot points to null true
+	If root points to null false
+	Declare a same method for root and subroot and return true
+	If true move either to root.left and subroot or root.right and 	subroot
+	Declare same method and check
+	also follow 3 step verification
+3.Main Method:
+ 	Build TreeNode root and subroot
+
+📌
+class Main {
+    static class TreeNode{
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int val){
+            this.val=val;
+            this.left=null;
+            this.right=null;
+        }
+    }
+    static class Solution{
+        public boolean subtree(TreeNode root,TreeNode subroot){
+            if(subroot==null) return true;
+            if(root==null) return false;
+            if(same(root,subroot)) return true;
+            return subtree(root.left,subroot) || subtree(root.right,subroot);
+        }
+        public boolean same(TreeNode p,TreeNode q){
+            if(p==null && q==null) return true;
+            if(p==null || q==null) return false;
+            if(p.val!=q.val) return false;
+            boolean left=same(p.left,q.left);
+            boolean right=same(p.right,q.right);
+            return left && right;
+        }
+    }
+    public static void main(String[] args) {
+        TreeNode root=new TreeNode(1);
+        root.left=new TreeNode(2);
+        root.right=new TreeNode(3);
+        root.left.left=new TreeNode(4);
+        root.left.right=new TreeNode(5);
+        root.right.left=new TreeNode(6);
+        root.right.right=new TreeNode(7);
+        
+        TreeNode subroot=new TreeNode(2);
+        subroot.left=new TreeNode(4);
+        subroot.right=new TreeNode(5);
+        
+        Solution sol = new Solution();
+        System.out.println(sol.subtree(root,subroot));
+    }
+}
