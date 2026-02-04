@@ -1,4 +1,4 @@
-✅Binary Tree Level Order Traversal
+✅Binary Tree Level Order Traversall
 ⚡Approch:
 1.TreeNode Class:
 2.Develop Queue Class:
