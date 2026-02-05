@@ -1,0 +1,60 @@
+✅Valid Binary Tree
+⚡Approch:
+1.TreeNode class:
+2.Solution class:
+	Check Boolean valid by using Treenode root
+	return isvalid for root,root.left,root.right
+	Check Boolean isvalid for all three root,min,max
+	If root equals to null return true
+	If its less than or equal to min or greater than equal 	to max return false
+	Also return check all the left subtree and right subtree
+3.Main Method:
+	Build TreeNode
+	Return in boolean
+		
+📌
+class Main {
+    static class TreeNode{
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int val){
+            this.val = val;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    static class Solution{
+        public boolean validate(TreeNode root){
+            return isvalid(root, Long.MIN_VALUE, Long.MAX_VALUE);
+        }
+
+        public boolean isvalid(TreeNode root, long min, long max){
+            if(root == null){
+                return true;
+            }
+            if(root.val <= min || root.val >= max){
+                return false;
+            }
+            return isvalid(root.left, min, root.val) &&
+                   isvalid(root.right, root.val, max);
+        }
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(6);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(8);
+        root.left.left = new TreeNode(0);
+        root.left.right = new TreeNode(4);
+        root.right.left = new TreeNode(7);
+        root.right.right = new TreeNode(9);
+        root.left.right.left = new TreeNode(3);
+        root.left.right.right = new TreeNode(5);
+
+        Solution sol = new Solution();
+        boolean result = sol.validate(root);
+        System.out.println("Valid BST: " + result);
+    }
+}
