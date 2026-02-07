@@ -1,6 +1,6 @@
 ✅Valid Binary Tree
 ⚡Approch:
-1.TreeNode class:
+1.TreeNode class::
 2.Solution class::
 	Check Boolean valid by using Treenode root
 	return isvalid for root,root.left,root.right
