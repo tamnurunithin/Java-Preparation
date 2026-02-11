@@ -1,0 +1,62 @@
+✅Kth Smallest Integer in BST
+⚡Approch:
+1.TreeNode class:
+2.Solution class:
+	Intialse count and answer
+	Create kthsmallest method pass root and k
+	Intialse inorder method and return int
+	Create a private inoder method and pass root 	and k 
+	If root.left exits then increase count value
+	If count==k value return answer of node value
+	If not move to root.right
+3.Main method:
+	Build TreeNode
+	Also mention Kth element
+
+📌
+class Main {
+    static class TreeNode{
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int val){
+            this.val=val;
+            this.left=null;
+            this.right=null;
+        }
+    }
+    static class Solution{
+        int count =0;
+        int answer=-1;
+        public int Kthsmallest(TreeNode root,k){
+            inorder(root,k);
+             return answer;
+        }
+        private void inorder(TreeNode node,k){   
+            if(node == null) return;
+            inorder(node.left,k)
+            count++;
+            if(count==k){
+                answer = node.val;
+                return;
+            }
+            inorder(node.right,k);
+            
+        }
+    }
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(6);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(8);
+        root.left.left = new TreeNode(0);
+        root.left.right = new TreeNode(4);
+        root.right.left = new TreeNode(7);
+        root.right.right = new TreeNode(9);
+        root.left.right.left = new TreeNode(3);
+        root.left.right.right = new TreeNode(5);
+        int k = 3;
+        Solution sol = new Solution();
+        int result = sol.Kthsmallest(root,k);
+        System.out.println(result);
+    }
+}
