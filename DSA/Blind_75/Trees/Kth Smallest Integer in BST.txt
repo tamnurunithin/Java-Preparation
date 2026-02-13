@@ -5,13 +5,13 @@
 	Intialse count and answer
 	Create kthsmallest method pass root and k
 	Intialse inorder method and return int
-	Create a private inoder method and pass root 	and k 
+	Create a private inorder method and pass root and k 
 	If root.left exits then increase count value
 	If count==k value return answer of node value
 	If not move to root.right
 3.Main method:
 	Build TreeNode
-	Also mention Kth element
+	Also mention Kth smallest element
 
 📌
 class Main {
