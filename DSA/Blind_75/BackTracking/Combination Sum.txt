@@ -1,0 +1,67 @@
+✅Combination Sum:
+⚡Approch:
+1.Class Solution:
+	public method combination_sum:
+		Intialsie backtrack from main method
+		return result
+	Private method backtrack:
+		Target should equals to 0 then run base class
+		base class defines adding values from current to result
+		If Target less than 0 or index equals to length stop path retur	
+		1.Select Number:
+			Add values from candiates to current
+			Target always reduces
+		2.Undo:
+			Reduce current size
+		3.Dont Select Number
+			Add value to index+1
+
+2.Main Method:
+	Build List
+	Intialse target
+	Call candiates and target by using ListofList using solution reference
+	also build method combiantion_Sum
+	Print method
+📌
+import java.util.ArrayList;
+import java.util.List;
+
+class Solution {
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        backtrack(candidates, 0, target, new ArrayList<>(), result);
+        return result;
+    }
+
+    private void backtrack(int[] candidates, int index, int target,
+                           List<Integer> current, List<List<Integer>> result) {
+
+        if (target == 0) {
+            result.add(new ArrayList<>(current));
+            return;
+        }
+
+        if (target < 0 || index == candidates.length) {
+            return;
+        }
+
+        current.add(candidates[index]);
+        backtrack(candidates, index, target - candidates[index], current, result);
+
+        current.remove(current.size() - 1);
+
+        backtrack(candidates, index + 1, target, current, result);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int[] candidates = {2, 3, 6, 7};
+        int target = 7;
+
+        List<List<Integer>> ans = sol.combinationSum(candidates, target);
+        System.out.println(ans); // [[2, 2, 3], [7]]
+    }
+}
