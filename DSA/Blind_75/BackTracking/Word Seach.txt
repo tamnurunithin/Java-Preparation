@@ -1,0 +1,62 @@
+✅Word Seach
+⚡Approch:
+1.Public Method
+	Create Boolean Exit method and pass board and word
+	Intialse row and col
+	Intiase dfs method return or false
+2.Private Method
+	Create Boolean dfs method that pass board ,word,row,col,index
+	Check index matches with words length return true
+	Check mismatch like board of row and col not equal to word of char
+	return false
+	Visited cells as # by using char temp
+	Use Boolean and Move all directions using dfs also increase index soo 	that it updates words length
+	Store all values in temp
+	return boolean
+3.Main Method
+	Build a 2d array of char
+	Intialse Boolean result of method exist
+	Print the result
+📌
+class Main {
+    public static boolean exit(char[][] board,String word){
+        int rows=board.length;
+        int col=board[0].length;
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<col;j++){
+                if(dfs(board,word,i,j,0)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    private static boolean dfs(char[][] board,String word,int row,int col,int index){
+        //words length match
+        if(index==word.length()){
+            return true;
+        }
+        //words mismatch
+        if(row<0 || col<0 || row>=board.length || col>= board[0].length|| board[row][col]!=word.charAt(index)){
+            return false;
+            
+        }
+        //visited
+        char temp=board[row][col];
+        board[row][col]='#';
+        //move all directions
+        boolean found=
+            dfs(board,word,row+1,col,index+1)||
+            dfs(board,word,row-1,col,index+1)||
+            dfs(board,word,row,col+1,index+1)||
+            dfs(board,word,row,col-1,index+1);
+            board[row][col]=temp;
+            return found;
+    }
+    public static void main(String[] args) {
+        char[][] board={{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
+        String word = "ABCCED";
+        boolean result=exit(board,word);
+        System.out.println(result);
+    }
+}
