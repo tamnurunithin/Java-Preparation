@@ -17,6 +17,17 @@
 	Build a 2d array of char
 	Intialse Boolean result of method exist
 	Print the result
+📝Explanation:
+“DFS happens when the function calls itself in four directions.
+Backtracking happens when we restore the board cell after exploring all possible paths from it.”
+Backtrack and DFS happens here: 
+char temp = board[row][col];
+board[row][col] = '#';   // mark visited
+
+// explore neighbors (DFS happens here)
+
+board[row][col] = temp;  // restore original value (BACKTRACK)
+
 📌
 class Main {
     public static boolean exit(char[][] board,String word){
