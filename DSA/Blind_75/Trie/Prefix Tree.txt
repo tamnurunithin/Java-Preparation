@@ -1,0 +1,105 @@
+✅Prefix Tree Implement Trie
+⚡Approch:
+1.Trie Class:
+    2.TrieNode class:
+	It defines how each node should look like
+	It is written inside Trie
+	It has 26 children and isend completion
+	It also has constructor that represents children and word 	completion isend
+    3.Insert Method:
+	Build TrieNode using input string words
+	Run a for loop and convert words into char
+	find index
+	check does node children exits or null
+	Attach new node children to existed node
+	move deep into node
+	return true that defines path is existed
+    4.Search Method:
+	Build TrieNode using input string words
+	Run a for loop and convert words into char
+	find index
+	check does node children exits or null
+	Return false that represents the word or character is not 	present
+	Move deep into node
+	return isend that defines the word is present or not.
+    5.Startswith method:
+	It basically checks the words that has input prefix
+	Build TrieNode using input string prefix
+	Run a for loop and convert prefix into char
+	find index
+	check does node children exits or null
+	Return false that represents the prefix or character is not 	present
+	Move deep into node
+	return isend with true that defines the word is present or 	not.
+3.Main Method:
+	Build Trie
+	Also build insert,search,startwith methods
+📌
+    class Trie{
+        class TrieNode{
+            TrieNode[] children;
+            boolean isend;
+            TrieNode(){
+                children = new TrieNode[26];
+                isend=false;
+            }
+        }
+        private TrieNode root;
+        public Trie(){
+            root=new TrieNode();
+        }
+        public void insert(String word){
+            TrieNode node = root;
+            for(char ch:word.toCharArray()){
+                int index = ch-'a';
+                if(node.children[index]==null){
+                    node.children[index]=new TrieNode();
+                }
+                node = node.children[index];
+            }
+            node.isend = true;
+        }
+        public boolean search(String word){
+            TrieNode node = root;
+            for(char ch : word.toCharArray()){
+                int index=ch-'a';
+                if(node.children[index]==null){
+                    return false;
+                }
+                node = node.children[index];
+            }
+            return node.isend;
+        }
+        public boolean startsWith(String prefix){
+            TrieNode node = root;
+            for(char ch : prefix.toCharArray()){
+                int index =ch-'a';
+                if(node.children[index]==null){
+                    return false;
+                }
+                node=node.children[index];
+            }
+            return true;
+        }
+    }
+    public static void main(String[] args) {
+        Trie trie = new Trie();
+        trie.insert("apple");
+        trie.insert("app");
+        trie.insert("bat");
+
+        System.out.println(trie.search("apple"));   // true
+        System.out.println(trie.search("app"));     // true
+        System.out.println(trie.search("appl"));    // false
+        System.out.println(trie.startsWith("ap"));  // true
+        System.out.println(trie.startsWith("ba"));  // true
+        System.out.println(trie.startsWith("cat")); // false
+        
+    }
+Output:
+true
+true
+false
+true
+true
+false
