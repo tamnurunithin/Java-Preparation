@@ -1,5 +1,5 @@
 ✅Word Seach
-⚡Approch:
+⚡Approch::
 1.Public Method
 	Create Boolean Exit method and pass board and word
 	Intialse row and col
