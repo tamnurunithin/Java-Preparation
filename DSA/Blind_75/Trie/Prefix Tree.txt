@@ -1,5 +1,5 @@
 ✅Prefix Tree Implement Trie
-⚡Approch:
+⚡Approch::
 1.Trie Class:
     2.TrieNode class:
 	It defines how each node should look like
