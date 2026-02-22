@@ -1,0 +1,68 @@
+✅Number Of Islands-Graphs
+⚡Approch:
+1.Main Method:
+	Build 2d array of char using 0 and 1
+	Build Solution class
+	Build noislands method
+	Print the method
+2.Class Solution:
+    -public int method for islands:
+	return 0 if grid is null or its length is 0
+	Find rows and cols length also intialse count=0
+	Run for loop and inside another for loop for both rows and cols
+	If You find grid[i][j]==1 then increase count++
+	Now inorder make all its beside as 0 we intialse dfs
+	dfs of grid rows and cols	
+    -private dfs method:
+	boundary + water check row and col cannot be less than 0
+	and also cannot be greater than or equals to length
+	Soo basically when we came to (0,0) we had 1 soo we incease its 	count and jump into dfs and make that number as zero and also 	explore all four directions make zero
+	Again at (2,2) we got 1 we increase count and make it has zero also 	explore four directions and make zero
+	Again at (3,3) same
+📌
+class Main {
+    public static void main(String[] args) {
+        char[][] grid = {
+                {'1','1','0','0','0'},
+                {'1','1','0','0','0'},
+                {'0','0','1','0','0'},
+                {'0','0','0','1','1'}
+        };
+        Main mainObj = new Main();
+        Solution sol = mainObj.new Solution();
+        int result = sol.noislands(grid);
+        System.out.println(result);
+    }
+
+    class Solution {
+        public int noislands(char[][] grid) {
+            if (grid == null || grid.length == 0) {
+                return 0;
+            }
+            int rows = grid.length;
+            int cols = grid[0].length;
+            int count = 0;
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    if (grid[i][j] == '1') {
+                        count++;
+                        dfs(grid, i, j);
+                    }
+                }
+            }
+            return count;
+        }
+        private void dfs(char[][] grid, int row, int col) {
+            if (row < 0 || col < 0 ||
+                row >= grid.length || col >= grid[0].length ||
+                grid[row][col] == '0') {
+                return;
+            }
+            grid[row][col] = '0';
+            dfs(grid, row + 1, col);
+            dfs(grid, row - 1, col);
+            dfs(grid, row, col + 1);
+            dfs(grid, row, col - 1);
+        }
+    }
+}
