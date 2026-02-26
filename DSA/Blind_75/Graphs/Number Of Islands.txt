@@ -1,5 +1,5 @@
 ✅Number Of Islands-Graphs
-⚡Approch:::
+⚡Approch::
 1.Main Method:
 	Build 2d array of char using 0 and 1
 	Build Solution class
